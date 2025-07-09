@@ -1,5 +1,8 @@
 using Reelkix.BackOffice.API.Extensions;
 using Reelkix.BackOffice.API.Middlewares;
+using Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer;
+using Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer.Validators;
+using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
@@ -19,6 +22,10 @@ if (!useInMemory)
 builder.Services.AddScoped<CreateProductHandler>();
 builder.Services.AddScoped<GetProductByIdHandler>();
 builder.Services.AddScoped<CreateProductCommandValidator>();
+
+builder.Services.AddScoped<CreateManufacturerHandler>();
+builder.Services.AddScoped<GetAllManufacturersHandler>();
+builder.Services.AddScoped<CreateManufacturerCommandValidator>();
 
 
 builder.Services.AddControllers();
