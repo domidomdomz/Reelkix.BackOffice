@@ -28,6 +28,14 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .IsRequired()
                 .HasColumnType("decimal(18,2)");
 
+            builder.Property(p => p.CreatedAt)
+                .IsRequired()
+                .HasDefaultValueSql("GETUTCDATE()");
+
+            builder.Property(p => p.UpdatedAt)
+                .IsRequired()
+                .HasDefaultValueSql("GETUTCDATE()");
+
             builder.HasMany(p => p.Images)
                 .WithOne()
                 .HasForeignKey(i => i.ProductId)
