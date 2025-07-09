@@ -31,6 +31,8 @@ namespace Reelkix.BackOffice.Domain.Products
             Description = description;
             CostPrice = costPrice;
             SellingPrice = sellingPrice;
+            CreatedAt = DateTime.UtcNow; // Set the creation timestamp to the current UTC time.
+            UpdatedAt = DateTime.UtcNow; // Set the update timestamp to the current UTC time.
         }
 
         public void AddImage(ProductImage image)

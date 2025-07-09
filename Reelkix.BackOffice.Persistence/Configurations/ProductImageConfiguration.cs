@@ -20,6 +20,14 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(200); // Alt text length limit
             
+            builder.Property(i => i.CreatedAt)
+                .IsRequired()
+                .HasDefaultValueSql("GETUTCDATE()"); // Default value for CreatedAt
+
+            builder.Property(i => i.UpdatedAt)
+                .IsRequired()
+                .HasDefaultValueSql("GETUTCDATE()"); // Default value for UpdatedAt
+
             builder.HasOne<Product>()
                 .WithMany(p => p.Images) // One Product can have many images
                 .HasForeignKey(i => i.ProductId)
