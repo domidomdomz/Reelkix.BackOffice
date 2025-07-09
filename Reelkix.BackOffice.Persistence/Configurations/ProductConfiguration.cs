@@ -45,8 +45,8 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(p => p.Manufacturer)
-                .WithOne() // Assuming a one-to-one relationship with Manufacturer
-                .HasForeignKey<Product>(i => i.ManufacturerId)
+                .WithMany()
+                .HasForeignKey(i => i.ManufacturerId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

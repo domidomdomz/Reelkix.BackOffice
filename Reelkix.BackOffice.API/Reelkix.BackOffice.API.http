@@ -3,18 +3,18 @@
 POST {{Reelkix.BackOffice.API_HostAddress}}/products/
 Content-Type: application/json
 {
-  "name": "GT Cut 1 'Think Pink'",
-  "description": "GT Cut 1 'Think Pink'",
-  "manufacturerId": "7F503979-B329-47DF-804A-921FF6A27C04",
+  "name": "GT Cut 1 'Grinch'",
+  "description": "GT Cut 1 'Grinch'",
+  "manufacturerId": "E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F",
   "costPrice": 3800,
   "sellingPrice": 4388,
   "imageUrls": [
-    "https://photo.yupoo.com/oxmade/85d3c25e/9e6968a1.jpg"
+    "https://photo.yupoo.com/oxmade/1611a8a1/1b4ae000.jpg"
   ]
 }
 ###
 
-GET {{Reelkix.BackOffice.API_HostAddress}}/products/E0107453-85B9-4A55-8E71-6421D3871A68
+GET {{Reelkix.BackOffice.API_HostAddress}}/products/42D30297-000A-42D5-9305-61EDFCC04D82
 Accept: application/json
 
 ###
