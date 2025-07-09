@@ -1,16 +1,19 @@
-using Microsoft.EntityFrameworkCore;
+using Reelkix.BackOffice.API.Extensions;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Queries.CreateProductById;
-using Reelkix.BackOffice.Persistence.Data;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+var useInMemory = builder.Configuration.GetValue<bool>("UseInMemoryDbForIntegrationTests");
+if (!useInMemory)
+{
+    builder.Services.AddSqlServerDbContext(builder.Configuration);
+}
+
 
 builder.Services.AddScoped<CreateProductHandler>();
 builder.Services.AddScoped<GetProductByIdHandler>();
@@ -37,3 +40,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
