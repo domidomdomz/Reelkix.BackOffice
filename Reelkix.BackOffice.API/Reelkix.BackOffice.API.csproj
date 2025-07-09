@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Reelkix.BackOffice.Application\Reelkix.BackOffice.Application.csproj" />
+    <ProjectReference Include="..\Reelkix.BackOffice.Domain\Reelkix.BackOffice.Domain.csproj" />
+    <ProjectReference Include="..\Reelkix.BackOffice.Infrastructure\Reelkix.BackOffice.Infrastructure.csproj" />
+    <ProjectReference Include="..\Reelkix.BackOffice.Persistence\Reelkix.BackOffice.Persistence.csproj" />
+    <ProjectReference Include="..\Reelkix.BackOffice.SharedKernel\Reelkix.BackOffice.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+@Reelkix.BackOffice.API_HostAddress = http://localhost:5285
+
+GET {{Reelkix.BackOffice.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
