@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Reelkix.BackOffice.SharedKernel\Reelkix.BackOffice.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>

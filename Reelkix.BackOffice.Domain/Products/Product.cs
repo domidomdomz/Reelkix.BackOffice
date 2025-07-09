@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Reelkix.BackOffice.SharedKernel;
 
 namespace Reelkix.BackOffice.Domain.Products
 {
-    public class Product
+    public class Product : BaseEntity
     {
         private readonly List<ProductImage> _images = new();
         public IReadOnlyCollection<ProductImage> Images => _images.AsReadOnly(); // Read-only collection of product images
@@ -18,7 +19,7 @@ namespace Reelkix.BackOffice.Domain.Products
         public decimal CostPrice { get; private set; } // Cost price of the product. Private set to ensure it can only be set internally.
         public decimal SellingPrice { get; private set; } // Selling price of the product.
 
-        
+
         private Product() { } // Private constructor for EF Core or other ORM usage. Ensures that the product can only be created through factory methods or constructors.
 
         public Product(Guid id, string name, string description, decimal costPrice, decimal sellingPrice)
@@ -35,6 +36,14 @@ namespace Reelkix.BackOffice.Domain.Products
             if (image == null) throw new ArgumentNullException(nameof(image), "Image cannot be null.");
             if (image.ProductId != Id) throw new InvalidOperationException("Image does not belong to this product.");
             _images.Add(image);
+            Touch();
+        }
+
+        public void UpdatePrice(decimal newSellingPrice)
+        {
+            if (newSellingPrice < 0) throw new ArgumentOutOfRangeException(nameof(newSellingPrice), "Price cannot be negative.");
+            SellingPrice = newSellingPrice;
+            Touch();
         }
     }
 }
