@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Reelkix.BackOffice.Domain.Manufacturers;
 using Reelkix.BackOffice.Domain.Products;
 using Reelkix.BackOffice.SharedKernel;
 
@@ -8,6 +9,7 @@ namespace Reelkix.BackOffice.Persistence.Data
     {
         public DbSet<Product> Products => Set<Product>();
         public DbSet<ProductImage> ProductImages => Set<ProductImage>();
+        public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
