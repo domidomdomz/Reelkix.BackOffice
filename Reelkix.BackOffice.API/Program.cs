@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
+using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Queries.CreateProductById;
 using Reelkix.BackOffice.Persistence.Data;
 
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<CreateProductHandler>();
 builder.Services.AddScoped<GetProductByIdHandler>();
+builder.Services.AddScoped<CreateProductCommandValidator>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
