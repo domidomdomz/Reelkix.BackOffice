@@ -20,9 +20,7 @@ namespace Reelkix.BackOffice.Application.Products.Commands.CreateProduct
             var validationResult = await _validator.ValidateAsync(command, cancellationToken);
             if (!validationResult.IsValid)
             {
-                var errors = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new ValidationException($"Product creation failed: {errors}");
-
+                throw new ValidationException(validationResult.Errors);
             }
 
             if (command == null) throw new ArgumentNullException(nameof(command));

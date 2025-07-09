@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Queries.CreateProductById;
 
@@ -21,7 +20,9 @@ namespace Reelkix.BackOffice.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
         {
-            if (command == null) return BadRequest("Invalid product data.");
+            if (command == null) 
+                return BadRequest("Invalid product data.");
+
             var productId = await _createHandler.Handle(command, cancellationToken);
             return CreatedAtAction(nameof(GetProductById), new { id = productId }, null);
         }

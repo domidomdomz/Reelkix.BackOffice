@@ -1,4 +1,5 @@
 using Reelkix.BackOffice.API.Extensions;
+using Reelkix.BackOffice.API.Middlewares;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Queries.CreateProductById;
@@ -32,6 +33,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 app.MapScalarApiReference();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
