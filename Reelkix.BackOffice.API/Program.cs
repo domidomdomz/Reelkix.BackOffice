@@ -3,6 +3,7 @@ using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Queries.CreateProductById;
 using Reelkix.BackOffice.Persistence.Data;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+app.MapScalarApiReference();
 
 app.UseHttpsRedirection();
 
