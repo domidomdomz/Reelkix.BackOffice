@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Reelkix.BackOffice.Domain\Reelkix.BackOffice.Domain.csproj" />
+    <ProjectReference Include="..\Reelkix.BackOffice.Persistence\Reelkix.BackOffice.Persistence.csproj" />
     <ProjectReference Include="..\Reelkix.BackOffice.SharedKernel\Reelkix.BackOffice.SharedKernel.csproj" />
   </ItemGroup>
 

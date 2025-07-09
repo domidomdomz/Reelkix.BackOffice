@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Reelkix.BackOffice.Application\Reelkix.BackOffice.Application.csproj" />
     <ProjectReference Include="..\Reelkix.BackOffice.Domain\Reelkix.BackOffice.Domain.csproj" />
     <ProjectReference Include="..\Reelkix.BackOffice.SharedKernel\Reelkix.BackOffice.SharedKernel.csproj" />
   </ItemGroup>

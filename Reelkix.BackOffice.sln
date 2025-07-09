@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reelkix.BackOffice.API", "Reelkix.BackOffice.API\Reelkix.BackOffice.API.csproj", "{1B6DDC60-E09A-4426-84A5-FBC4610EA60E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reelkix.BackOffice.Application", "Reelkix.BackOffice.Application\Reelkix.BackOffice.Application.csproj", "{006899DB-3C5C-448E-8A8E-13693C346D8A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ACADF745-F669-456B-A672-5FB4F0D93A8C} = {ACADF745-F669-456B-A672-5FB4F0D93A8C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reelkix.BackOffice.Domain", "Reelkix.BackOffice.Domain\Reelkix.BackOffice.Domain.csproj", "{D3FD0B1E-BD3C-4568-9237-5F7B1614B678}"
 EndProject
