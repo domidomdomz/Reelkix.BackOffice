@@ -23,7 +23,7 @@ namespace Reelkix.BackOffice.API.Controllers
         {
             if (command == null) return BadRequest("Invalid product data.");
             var productId = await _createHandler.Handle(command, cancellationToken);
-            return CreatedAtAction(nameof(GetProductByIdHandler), new { id = productId }, null);
+            return CreatedAtAction(nameof(GetProductById), new { id = productId }, null);
         }
 
         [HttpGet("{id}")]

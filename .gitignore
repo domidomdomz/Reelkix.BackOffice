@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /Reelkix.BackOffice.Persistence/Migrations/20250709075123_InitialCreate.cs
 /Reelkix.BackOffice.Persistence/Migrations/20250709075123_InitialCreate.Designer.cs
 /Reelkix.BackOffice.Persistence/Migrations/ApplicationDbContextModelSnapshot.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709094944_UpdateModelChanges.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709094944_UpdateModelChanges.Designer.cs

@@ -1,6 +1,17 @@
-@Reelkix.BackOffice.API_HostAddress = http://localhost:5285
+@Reelkix.BackOffice.API_HostAddress = https://localhost:7037/api
 
-GET {{Reelkix.BackOffice.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
+POST {{Reelkix.BackOffice.API_HostAddress}}/products/
+Content-Type: application/json
+{
+  "name": "GT Cut 1 'Think Pink'",
+  "description": "GT Cut 1 'Think Pink' OX Batch",
+  "costPrice": 3800,
+  "sellingPrice": 4388,
+  "imageUrls": [
+    "https://photo.yupoo.com/oxmade/85d3c25e/9e6968a1.jpg"
+  ]
+}
 ###
+
+GET {{Reelkix.BackOffice.API_HostAddress}}/products/CC2C8058-AB70-4810-BC00-FC3935F9956B
+Accept: application/json
