@@ -15,6 +15,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetProductById
         {
             var product = await _db.Products
                 .Include(p => p.Images)
+                .Include(p => p.Manufacturer) // Assuming you want to include Manufacturer details
                 .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
 
             if (product is null)
@@ -28,6 +29,8 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetProductById
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
+                ManufacturerId = product.ManufacturerId,
+                ManufacturerName = product.Manufacturer?.Name ?? string.Empty, // Assuming Manufacturer is included in the query
                 CostPrice = product.CostPrice,
                 SellingPrice = product.SellingPrice,
                 ImageUrls = product.Images.Select(pi => pi.Url).ToList()

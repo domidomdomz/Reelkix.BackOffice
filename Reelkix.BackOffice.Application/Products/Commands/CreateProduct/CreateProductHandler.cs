@@ -24,7 +24,14 @@ namespace Reelkix.BackOffice.Application.Products.Commands.CreateProduct
             }
 
             if (command == null) throw new ArgumentNullException(nameof(command));
-            var product = new Product(id: Guid.NewGuid(), name: command.Name, description: command.Description, costPrice: command.CostPrice, sellingPrice: command.SellingPrice);
+            var product = new Product(
+                id: Guid.NewGuid(), 
+                name: command.Name, 
+                description: command.Description,
+                manufacturerId: command.ManufacturerId,
+                costPrice: command.CostPrice, 
+                sellingPrice: command.SellingPrice);
+
             if (command.ImageUrls != null && command.ImageUrls.Any())
             {
                 foreach (var imageUrl in command.ImageUrls)

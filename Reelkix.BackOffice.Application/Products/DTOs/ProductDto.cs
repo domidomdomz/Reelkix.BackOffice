@@ -11,6 +11,10 @@ namespace Reelkix.BackOffice.Application.Products.DTOs
         public Guid Id { get; set; }
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
+
+        public Guid ManufacturerId { get; set; } // The unique identifier of the manufacturer associated with the product, cannot be empty.
+        public string ManufacturerName { get; set; } = default!; // The name of the manufacturer associated with the product, cannot be null or empty.
+
         public decimal CostPrice { get; set; }
         public decimal SellingPrice { get; set; }
 

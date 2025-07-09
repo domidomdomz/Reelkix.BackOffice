@@ -368,3 +368,9 @@ FodyWeavers.xsd
 /Reelkix.BackOffice.Persistence/Migrations/20250709094944_UpdateModelChanges.Designer.cs
 /Reelkix.BackOffice.Persistence/Migrations/20250709134012_UpdateDomains.cs
 /Reelkix.BackOffice.Persistence/Migrations/20250709134012_UpdateDomains.Designer.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709143735_Add-Manufacturer-to-Product.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709143735_Add-Manufacturer-to-Product.Designer.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709143853_Add-Manufacturer-to-Product2.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709143853_Add-Manufacturer-to-Product2.Designer.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709144203_Add-Manufacturer-to-Product3.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250709144203_Add-Manufacturer-to-Product3.Designer.cs

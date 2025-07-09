@@ -4,7 +4,8 @@ POST {{Reelkix.BackOffice.API_HostAddress}}/products/
 Content-Type: application/json
 {
   "name": "GT Cut 1 'Think Pink'",
-  "description": "GT Cut 1 'Think Pink' OX Batch",
+  "description": "GT Cut 1 'Think Pink'",
+  "manufacturerId": "7F503979-B329-47DF-804A-921FF6A27C04",
   "costPrice": 3800,
   "sellingPrice": 4388,
   "imageUrls": [
@@ -13,5 +14,10 @@ Content-Type: application/json
 }
 ###
 
-GET {{Reelkix.BackOffice.API_HostAddress}}/products/CC2C8058-AB70-4810-BC00-FC3935F9956B
+GET {{Reelkix.BackOffice.API_HostAddress}}/products/E0107453-85B9-4A55-8E71-6421D3871A68
+Accept: application/json
+
+###
+
+GET {{Reelkix.BackOffice.API_HostAddress}}/manufacturers
 Accept: application/json

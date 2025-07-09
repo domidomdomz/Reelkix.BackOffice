@@ -20,6 +20,9 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(500);
 
+            builder.Property(p => p.ManufacturerId)
+                .IsRequired();
+
             builder.Property(p => p.CostPrice)
                 .IsRequired()
                 .HasColumnType("decimal(18,2)");
@@ -40,6 +43,11 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .WithOne()
                 .HasForeignKey(i => i.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(p => p.Manufacturer)
+                .WithOne() // Assuming a one-to-one relationship with Manufacturer
+                .HasForeignKey<Product>(i => i.ManufacturerId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
     
