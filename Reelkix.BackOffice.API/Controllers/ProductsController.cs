@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
-using Reelkix.BackOffice.Application.Products.Queries.CreateProductById;
+using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
 
 namespace Reelkix.BackOffice.API.Controllers
 {

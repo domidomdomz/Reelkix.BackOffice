@@ -2,7 +2,7 @@
 using Reelkix.BackOffice.Application.Products.DTOs;
 using Reelkix.BackOffice.Persistence.Data;
 
-namespace Reelkix.BackOffice.Application.Products.Queries.CreateProductById
+namespace Reelkix.BackOffice.Application.Products.Queries.GetProductById
 {
     public class GetProductByIdHandler
     {
