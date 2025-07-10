@@ -16,7 +16,7 @@ namespace Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufactur
             _validator = validator ?? throw new ArgumentNullException(nameof(validator)); // Ensure the validator is not null
         }
 
-        public async Task Handle(UpdateManufacturerCommand command, CancellationToken cancellationToken)
+        public async Task<bool> Handle(Guid id, UpdateManufacturerCommand command, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(command, cancellationToken);
             if (!validationResult.IsValid)
@@ -27,16 +27,19 @@ namespace Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufactur
 
             if (command == null) throw new ArgumentNullException(nameof(command));
             // Find the existing manufacturer by ID
-            var manufacturer = await _db.Manufacturers.FindAsync(new object[] { command.Id }, cancellationToken);
+            var manufacturer = await _db.Manufacturers.FindAsync(new object[] { id }, cancellationToken);
             if (manufacturer == null)
             {
-                throw new KeyNotFoundException($"Manufacturer with ID {command.Id} not found.");
+                throw new KeyNotFoundException($"Manufacturer with ID {id} not found.");
             }
             // Update the properties of the manufacturer
             manufacturer.Name = command.Name;
             manufacturer.Description = command.Description;
             // Save changes to the database
             await _db.SaveChangesAsync(cancellationToken);
+
+            // Return true to indicate the update was successful
+            return true;
         }
     }
 }

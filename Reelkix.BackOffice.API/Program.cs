@@ -2,6 +2,8 @@ using Reelkix.BackOffice.API.Extensions;
 using Reelkix.BackOffice.API.Middlewares;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer.Validators;
+using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer;
+using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer.Validators;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetManufacturerById;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
@@ -25,10 +27,11 @@ builder.Services.AddScoped<GetProductByIdHandler>();
 builder.Services.AddScoped<CreateProductCommandValidator>();
 
 builder.Services.AddScoped<CreateManufacturerHandler>();
+builder.Services.AddScoped<CreateManufacturerCommandValidator>();
 builder.Services.AddScoped<GetAllManufacturersHandler>();
 builder.Services.AddScoped<GetManufacturerByIdHandler>();
-builder.Services.AddScoped<CreateManufacturerCommandValidator>();
-
+builder.Services.AddScoped<UpdateManufacturerHandler>();
+builder.Services.AddScoped<UpdateManufacturerCommandValidator>();
 
 builder.Services.AddControllers(); // Endpoint routing is enabled by default in ASP.NET Core 6.0 and later
 
