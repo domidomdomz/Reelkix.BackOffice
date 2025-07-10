@@ -19,7 +19,9 @@ namespace Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacture
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    Description = m.Description
+                    Description = m.Description,
+                    CreatedAt = m.CreatedAt,
+                    UpdatedAt = m.UpdatedAt
                 })
                 .ToListAsync(cancellationToken);
             return manufacturers;
