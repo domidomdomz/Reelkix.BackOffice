@@ -21,3 +21,10 @@ Accept: application/json
 
 GET {{Reelkix.BackOffice.API_HostAddress}}/manufacturers
 Accept: application/json
+
+###
+
+GET {{Reelkix.BackOffice.API_HostAddress}}/manufacturers/E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F
+Accept: application/json
+
+###

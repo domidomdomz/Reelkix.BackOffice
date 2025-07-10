@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
+using Reelkix.BackOffice.Application.Manufacturers.Queries.GetManufacturerById;
 
 namespace Reelkix.BackOffice.API.Controllers
 {
@@ -10,11 +11,13 @@ namespace Reelkix.BackOffice.API.Controllers
     {
         private readonly CreateManufacturerHandler _createHandler;
         private readonly GetAllManufacturersHandler _getAllHandler;
+        private readonly GetManufacturerByIdHandler _getByIdHandler;
 
-        public ManufacturersController(CreateManufacturerHandler createHandler, GetAllManufacturersHandler getAllHandler)
+        public ManufacturersController(CreateManufacturerHandler createHandler, GetAllManufacturersHandler getAllHandler, GetManufacturerByIdHandler getByIdHandler)
         {
             _createHandler = createHandler ?? throw new ArgumentNullException(nameof(createHandler));
             _getAllHandler = getAllHandler ?? throw new ArgumentNullException(nameof(getAllHandler));
+            _getByIdHandler = getByIdHandler ?? throw new ArgumentNullException(nameof(getByIdHandler));
         }
 
         [HttpPost]
@@ -33,6 +36,16 @@ namespace Reelkix.BackOffice.API.Controllers
             if (manufacturers == null || !manufacturers.Any())
                 return NotFound("No manufacturers found.");
             return Ok(manufacturers);
+        }
+
+        [HttpGet]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> GetManufacturerById(Guid id, CancellationToken cancellationToken)
+        {
+            var manufacturer = await _getByIdHandler.Handle(new GetManufacturerByIdQuery(id), cancellationToken);
+            if (manufacturer == null)
+                return NotFound($"Manufacturer with ID {id} not found.");
+            return Ok(manufacturer);
         }
     }
 }
