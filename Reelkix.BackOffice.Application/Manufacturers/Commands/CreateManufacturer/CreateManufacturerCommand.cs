@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer
+﻿namespace Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer
 {
     public class CreateManufacturerCommand
     {

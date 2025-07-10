@@ -10,8 +10,8 @@ namespace Reelkix.BackOffice.Domain.Manufacturers
     public class Manufacturer : IAuditable
     {
         public Guid Id { get; private set; } // Unique identifier for the manufacturer
-        public string Name { get; private set; } = default!; // Name of the manufacturer, must be set before use
-        public string Description { get; private set; } = default!; // Description of the manufacturer, must be set before use
+        public string Name { get; set; } = default!; // Name of the manufacturer, must be set before use
+        public string Description { get; set; } = default!; // Description of the manufacturer, must be set before use
 
 
         public DateTime CreatedAt { get; set; } // Timestamp when the manufacturer was created
