@@ -28,9 +28,24 @@ builder.Services.AddScoped<GetAllManufacturersHandler>();
 builder.Services.AddScoped<CreateManufacturerCommandValidator>();
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(); // Endpoint routing is enabled by default in ASP.NET Core 6.0 and later
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalFrontend", builder =>
+    {
+        builder
+            .WithOrigins("http://localhost:5173") // Vite default
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); // if you use cookies or auth headers
+    });
+});
+
 
 var app = builder.Build();
 
@@ -43,11 +58,13 @@ app.MapScalarApiReference();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
+app.UseCors("AllowLocalFrontend");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers(); // This maps the controller actions to endpoints
 
 app.Run();
 
