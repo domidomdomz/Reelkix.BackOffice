@@ -39,7 +39,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalFrontend", builder =>
     {
         builder
-            .WithOrigins("http://localhost:5173") // Vite default
+            .WithOrigins("http://localhost:5173") // Vite default - TODO: Store to appsettings for Production when deployed
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials(); // if you use cookies or auth headers
