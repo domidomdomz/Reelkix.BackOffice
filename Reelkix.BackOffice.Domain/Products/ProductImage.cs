@@ -9,9 +9,11 @@ namespace Reelkix.BackOffice.Domain.Products
 {
     public class ProductImage : IAuditable
     {
+        public Guid Id { get; private set; } = Guid.NewGuid(); // Unique identifier for the product image, initialized to a new GUID.
         public Guid ProductId { get; private set; }
         public string Url { get; private set; } = default!; // URL of the product image. Default! indicates it must be set before use.
         public string AltText { get; private set; } = default!; // Alternative text for the image, useful for accessibility.
+        public int SortOrder { get; set; } = 0; // Order in which the image should be displayed, defaulting to 0.
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

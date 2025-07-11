@@ -32,6 +32,8 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .WithMany(p => p.Images) // One Product can have many images
                 .HasForeignKey(i => i.ProductId)
                 .OnDelete(DeleteBehavior.Cascade); // Cascade delete if the product is deleted
+
+            builder.HasIndex(i => new { i.ProductId, i.SortOrder }); // Index on ProductId and SortOrder for efficient querying
         }
     }
 }
