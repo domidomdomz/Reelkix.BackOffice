@@ -16,17 +16,18 @@ Content-Type: application/json
 
 GET {{Reelkix.BackOffice.API_HostAddress}}/products/42D30297-000A-42D5-9305-61EDFCC04D82
 Accept: application/json
+###
 
+GET {{Reelkix.BackOffice.API_HostAddress}}/products
+Accept: application/json
 ###
 
 GET {{Reelkix.BackOffice.API_HostAddress}}/manufacturers
 Accept: application/json
-
 ###
 
 GET {{Reelkix.BackOffice.API_HostAddress}}/manufacturers/E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F
 Accept: application/json
-
 ###
 
 PUT {{Reelkix.BackOffice.API_HostAddress}}/manufacturers/E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F

@@ -8,6 +8,7 @@ using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetManufacturerById;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
+using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
 using Scalar.AspNetCore;
 
@@ -24,6 +25,7 @@ if (!useInMemory)
 
 builder.Services.AddScoped<CreateProductHandler>();
 builder.Services.AddScoped<GetProductByIdHandler>();
+builder.Services.AddScoped<GetAllProductsHandler>();
 builder.Services.AddScoped<CreateProductCommandValidator>();
 
 builder.Services.AddScoped<CreateManufacturerHandler>();
