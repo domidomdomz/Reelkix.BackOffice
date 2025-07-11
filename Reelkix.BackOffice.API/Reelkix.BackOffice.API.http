@@ -3,13 +3,13 @@
 POST {{Reelkix.BackOffice.API_HostAddress}}/products/
 Content-Type: application/json
 {
-  "name": "GT Cut 1 'Grinch'",
-  "description": "GT Cut 1 'Grinch'",
-  "manufacturerId": "E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F",
-  "costPrice": 3800,
-  "sellingPrice": 4388,
+  "name": "Kobe 8 'EYBL Academy'",
+  "description": "Kobe 4 'EYBL Academy'",
+  "manufacturerId": "5D35700D-B6B1-4BCF-B53D-4367902FC46D",
+  "costPrice": 5000,
+  "sellingPrice": 5588,
   "imageUrls": [
-    "https://photo.yupoo.com/oxmade/1611a8a1/1b4ae000.jpg"
+    "https://reelkix-backoffice.s3.ap-southeast-1.amazonaws.com/products/gx-batch-350-460-kobe8-factory-price-reduction-v0-pl19m38hspbf1.jpeg"
   ]
 }
 ###

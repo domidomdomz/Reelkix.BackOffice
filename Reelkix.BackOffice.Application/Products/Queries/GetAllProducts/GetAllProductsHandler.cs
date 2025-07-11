@@ -26,6 +26,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetAllProducts
                 .Include(p => p.Manufacturer)
                 .Select(p => new ProductDto
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Description = p.Description,
                     CostPrice = p.CostPrice,
