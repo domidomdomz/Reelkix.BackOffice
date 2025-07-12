@@ -7,9 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.0.2" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.4.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Reelkix.BackOffice.Application\Reelkix.BackOffice.Application.csproj" />
     <ProjectReference Include="..\Reelkix.BackOffice.Domain\Reelkix.BackOffice.Domain.csproj" />
     <ProjectReference Include="..\Reelkix.BackOffice.SharedKernel\Reelkix.BackOffice.SharedKernel.csproj" />
+  </ItemGroup>
+    
+  <ItemGroup>
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
