@@ -10,7 +10,11 @@ namespace Reelkix.BackOffice.Persistence.Configurations
         {
             builder.ToTable("ProductImages");
 
-            builder.HasKey(i => new { i.ProductId, i.Url }); // Composite key using ProductId and Url
+            builder.HasKey(i => i.Id); // Primary key for ProductImage
+
+            builder.Property(i => i.Id)
+                .HasDefaultValueSql("NEWID()") // Default value for Id using NEWID() for GUID generation
+                .HasColumnOrder(0); 
 
             builder.Property(i => i.Url)
                 .IsRequired()
@@ -19,7 +23,11 @@ namespace Reelkix.BackOffice.Persistence.Configurations
             builder.Property(i => i.AltText)
                 .IsRequired()
                 .HasMaxLength(200); // Alt text length limit
-            
+
+            builder.Property(i => i.SortOrder)
+                .IsRequired()
+                .HasDefaultValue(0); // Default value for SortOrder
+
             builder.Property(i => i.CreatedAt)
                 .IsRequired()
                 .HasDefaultValueSql("GETUTCDATE()"); // Default value for CreatedAt

@@ -19,11 +19,13 @@ namespace Reelkix.BackOffice.Domain.Products
         public DateTime UpdatedAt { get; set; }
 
 
-        public ProductImage(Guid productId, string url, string altText)
+        public ProductImage(Guid productId, string url, string altText, int sortOrder)
         {
+            Id = Guid.NewGuid(); // Generate a new unique identifier for the product image.
             ProductId = productId;
             Url = url;
             AltText = altText;
+            SortOrder = sortOrder;
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
         }

@@ -31,6 +31,10 @@ namespace Reelkix.BackOffice.Persistence.Configurations
                 .IsRequired()
                 .HasColumnType("decimal(18,2)");
 
+            builder.Property(p => p.IsDraft)
+                .IsRequired()
+                .HasDefaultValue(true);
+
             builder.Property(p => p.CreatedAt)
                 .IsRequired()
                 .HasDefaultValueSql("GETUTCDATE()");

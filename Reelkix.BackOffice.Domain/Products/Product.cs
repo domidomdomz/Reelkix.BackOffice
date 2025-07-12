@@ -28,6 +28,8 @@ namespace Reelkix.BackOffice.Domain.Products
         public decimal CostPrice { get; private set; } // Cost price of the product. Private set to ensure it can only be set internally.
         public decimal SellingPrice { get; private set; } // Selling price of the product.
 
+        public bool IsDraft { get; private set; } = true; // Indicates whether the product is a draft. Default is true, meaning the product is initially created as a draft.
+
         public DateTime CreatedAt { get; set; } // Timestamp when the product was created.
         public DateTime UpdatedAt { get; set; } // Timestamp when the product was last updated.
 
@@ -43,6 +45,12 @@ namespace Reelkix.BackOffice.Domain.Products
             SellingPrice = sellingPrice;
             CreatedAt = DateTime.UtcNow; // Set the creation timestamp to the current UTC time.
             UpdatedAt = DateTime.UtcNow; // Set the update timestamp to the current UTC time.
+        }
+
+        public void MarkFinalized()
+        {
+            IsDraft = false; // Mark the product as finalized by setting IsDraft to false.
+            UpdatedAt = DateTime.UtcNow; // Update the timestamp to the current UTC time.
         }
 
         public void AddImage(ProductImage image)
