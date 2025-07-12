@@ -53,6 +53,16 @@ namespace Reelkix.BackOffice.Domain.Products
             UpdatedAt = DateTime.UtcNow; // Update the timestamp to the current UTC time.
         }
 
+        public void UpdateDetails(string name, string desc, Guid manufacturerId, decimal cost, decimal sell)
+        {
+            Name = name;
+            Description = desc;
+            ManufacturerId = manufacturerId;
+            CostPrice = cost;
+            SellingPrice = sell;
+        }
+
+
         public void AddImage(ProductImage image)
         {
             if (image == null) throw new ArgumentNullException(nameof(image), "Image cannot be null.");

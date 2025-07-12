@@ -29,5 +29,17 @@ namespace Reelkix.BackOffice.Domain.Products
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
         }
+
+        public void UpdateSortOrder(int sortOrder)
+        {
+            SortOrder = sortOrder; // Update the sort order of the image.
+            UpdatedAt = DateTime.UtcNow; // Update the timestamp to the current UTC time.
+        }
+
+        public void UpdateAltText(string altText)
+        {
+            AltText = altText; // Update the alternative text for the image.
+            UpdatedAt = DateTime.UtcNow; // Update the timestamp to the current UTC time.
+        }
     }
 }
