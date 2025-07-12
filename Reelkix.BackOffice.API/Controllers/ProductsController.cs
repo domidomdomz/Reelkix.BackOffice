@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
+using Reelkix.BackOffice.Application.Products.Commands.UpdateProduct;
 using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
 
@@ -10,14 +12,41 @@ namespace Reelkix.BackOffice.API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly CreateProductHandler _createHandler;
+        private readonly CreateDraftProductHandler _createDraftHandler;
+        private readonly UpdateProductHandler _updateHandler;
         private readonly GetProductByIdHandler _getHandler;
         private readonly GetAllProductsHandler _getAllHandler;
 
-        public ProductsController(CreateProductHandler createHandler, GetProductByIdHandler getHandler, GetAllProductsHandler getAllHandler)
+
+        public ProductsController(
+            CreateProductHandler createHandler,
+            CreateDraftProductHandler createDraftHandler,
+            UpdateProductHandler updateHandler,
+            GetProductByIdHandler getHandler, 
+            GetAllProductsHandler getAllHandler)
         {
             _createHandler = createHandler ?? throw new ArgumentNullException(nameof(createHandler));
+            _createDraftHandler = createDraftHandler ?? throw new ArgumentNullException(nameof(createDraftHandler));
+            _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
             _getHandler = getHandler ?? throw new ArgumentNullException(nameof(getHandler));
             _getAllHandler = getAllHandler ?? throw new ArgumentNullException(nameof(getAllHandler));
+        }
+
+        [HttpPost("draft")]
+        public async Task<IActionResult> CreateDraftProduct([FromBody] CreateDraftProductCommand command, CancellationToken cancellationToken)
+        {
+            var draftId = await _createDraftHandler.Handle(command, cancellationToken);
+            return Ok(new { productId = draftId });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] UpdateProductCommand command, CancellationToken cancellationToken)
+        {
+            if (command == null || command.ProductId != id)
+                return BadRequest("Invalid product data or ID mismatch.");
+            
+            await _updateHandler.Handle(command, cancellationToken);
+            return NoContent();
         }
 
         [HttpPost]

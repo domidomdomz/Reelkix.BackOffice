@@ -5,12 +5,33 @@ Content-Type: application/json
 {
   "name": "Kobe 8 'EYBL Academy'",
   "description": "Kobe 4 'EYBL Academy'",
-  "manufacturerId": "5D35700D-B6B1-4BCF-B53D-4367902FC46D",
+  "manufacturerId": "5F3673CB-538E-435A-8CB6-B16AAF37F726",
   "costPrice": 5000,
   "sellingPrice": 5588,
   "imageUrls": [
     "https://reelkix-backoffice.s3.ap-southeast-1.amazonaws.com/products/gx-batch-350-460-kobe8-factory-price-reduction-v0-pl19m38hspbf1.jpeg"
   ]
+}
+###
+
+POST {{Reelkix.BackOffice.API_HostAddress}}/products/draft
+Content-Type: application/json
+{
+  "name": "Kobe 8 'EYBL Academy'",
+  "manufacturerId": "5F3673CB-538E-435A-8CB6-B16AAF37F726"
+}
+###
+
+PUT {{Reelkix.BackOffice.API_HostAddress}}/products/55BAECFA-5765-4C8A-86C5-7B05BC1137C4
+Content-Type: application/json
+{
+  "productId": "55BAECFA-5765-4C8A-86C5-7B05BC1137C4",
+  "name": "Kobe 8 'EYBL Academy'",
+  "description": "Kobe 8 'EYBL Academy'",
+  "manufacturerId": "5F3673CB-538E-435A-8CB6-B16AAF37F726",
+  "costPrice": 5000,
+  "sellingPrice": 5588,
+  "images": []
 }
 ###
 
@@ -28,6 +49,14 @@ Accept: application/json
 
 GET {{Reelkix.BackOffice.API_HostAddress}}/manufacturers/E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F
 Accept: application/json
+###
+
+POST {{Reelkix.BackOffice.API_HostAddress}}/manufacturers/
+Content-Type: application/json
+{
+  "name": "OX",
+  "description": "OX Batch"
+}
 ###
 
 PUT {{Reelkix.BackOffice.API_HostAddress}}/manufacturers/E7A5B1BB-D2DD-49DC-B4EB-EC80308CBA1F

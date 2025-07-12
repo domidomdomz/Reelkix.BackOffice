@@ -6,8 +6,11 @@ using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer.Validators;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetManufacturerById;
+using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct;
+using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
+using Reelkix.BackOffice.Application.Products.Commands.UpdateProduct;
 using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
 using Reelkix.BackOffice.Infrastructure.DependencyInjection;
@@ -23,11 +26,13 @@ if (!useInMemory)
     builder.Services.AddSqlServerDbContext(builder.Configuration);
 }
 
-
 builder.Services.AddScoped<CreateProductHandler>();
+builder.Services.AddScoped<CreateDraftProductHandler>();
+builder.Services.AddScoped<UpdateProductHandler>();
 builder.Services.AddScoped<GetProductByIdHandler>();
 builder.Services.AddScoped<GetAllProductsHandler>();
 builder.Services.AddScoped<CreateProductCommandValidator>();
+builder.Services.AddScoped<CreateDraftProductCommandValidator>();
 
 builder.Services.AddScoped<CreateManufacturerHandler>();
 builder.Services.AddScoped<CreateManufacturerCommandValidator>();
