@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct.Validators;
 using Reelkix.BackOffice.Persistence.Data;
 
@@ -24,6 +25,12 @@ namespace Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct
             {
                 throw new ValidationException(validationResult.Errors);
             }
+
+            var manufacturerExists = await _db.Manufacturers
+                .AnyAsync(m => m.Id == command.ManufacturerId, cancellationToken);
+
+            if (!manufacturerExists)
+                throw new ValidationException($"Manufacturer with ID {command.ManufacturerId} does not exist.");
 
             var draft = new Domain.Products.Product(
                 id: Guid.NewGuid(),
