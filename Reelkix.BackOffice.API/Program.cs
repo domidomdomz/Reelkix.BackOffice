@@ -10,6 +10,7 @@ using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
+using Reelkix.BackOffice.Infrastructure.DependencyInjection;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,8 @@ builder.Services.AddScoped<GetAllManufacturersHandler>();
 builder.Services.AddScoped<GetManufacturerByIdHandler>();
 builder.Services.AddScoped<UpdateManufacturerHandler>();
 builder.Services.AddScoped<UpdateManufacturerCommandValidator>();
+
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 
 builder.Services.AddControllers(); // Endpoint routing is enabled by default in ASP.NET Core 6.0 and later
 
