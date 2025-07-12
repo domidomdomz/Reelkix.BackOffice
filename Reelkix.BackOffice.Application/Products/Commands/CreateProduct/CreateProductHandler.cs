@@ -36,7 +36,7 @@ namespace Reelkix.BackOffice.Application.Products.Commands.CreateProduct
             {
                 foreach (var imageUrl in command.ImageUrls)
                 {
-                    var image = new ProductImage(productId: product.Id, url: imageUrl, altText: product.Name);
+                    var image = new ProductImage(productId: product.Id, url: imageUrl, altText: product.Name, sortOrder: 0);
                     product.AddImage(image);
                 }
             }
