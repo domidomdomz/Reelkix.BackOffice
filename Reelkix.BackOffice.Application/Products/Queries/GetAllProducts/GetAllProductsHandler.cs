@@ -24,6 +24,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetAllProducts
             var products = await _db.Products
                 .Include(p => p.Images)
                 .Include(p => p.Manufacturer)
+                .OrderBy(p => p.CreatedAt) // Assuming you want to order by creation date
                 .Select(p => new ProductDto
                 {
                     Id = p.Id,
@@ -33,7 +34,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetAllProducts
                     SellingPrice = p.SellingPrice,
                     ManufacturerId = p.ManufacturerId,
                     ManufacturerName = p.Manufacturer.Name,
-                    ImageUrls = p.Images.Select(pi => pi.Url).ToList(),
+                    ImageUrls = p.Images.OrderBy(pi => pi.SortOrder).Select(pi => pi.Url).ToList(),
                 }).ToListAsync();
 
             if (products is null || !products.Any())
