@@ -6,10 +6,12 @@ namespace Reelkix.BackOffice.Infrastructure.Storage
     public class LocalImageService : IS3Service
     {
         private readonly string _basePath;
+        private readonly string _baseUrl;
 
         public LocalImageService(IConfiguration config)
         {
             _basePath = config["Storage:LocalPath"] ?? "UploadedFiles";
+            _baseUrl = config["BaseUrl"] ?? "https://localhost:7037/";
             Directory.CreateDirectory(_basePath);
         }
 
@@ -24,7 +26,7 @@ namespace Reelkix.BackOffice.Infrastructure.Storage
 
         public string GetPublicUrl(string key)
         {
-            return $"/static/{key.Replace('\\', '/')}";
+            return $"{_baseUrl}static/{key.Replace('\\', '/')}";
         }
     }
 }

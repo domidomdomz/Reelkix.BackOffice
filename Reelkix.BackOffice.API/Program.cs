@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using Reelkix.BackOffice.API.Extensions;
 using Reelkix.BackOffice.API.Middlewares;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.CreateManufacturer;
@@ -6,6 +7,7 @@ using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer.Validators;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetManufacturerById;
+using Reelkix.BackOffice.Application.ProductImages.Commands.UploadProductImage;
 using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
@@ -33,6 +35,8 @@ builder.Services.AddScoped<GetProductByIdHandler>();
 builder.Services.AddScoped<GetAllProductsHandler>();
 builder.Services.AddScoped<CreateProductCommandValidator>();
 builder.Services.AddScoped<CreateDraftProductCommandValidator>();
+
+builder.Services.AddScoped<UploadProductImageHandler>();
 
 builder.Services.AddScoped<CreateManufacturerHandler>();
 builder.Services.AddScoped<CreateManufacturerCommandValidator>();
@@ -76,6 +80,15 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseCors("AllowLocalFrontend");
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles")),
+    RequestPath = "/static",
+    ServeUnknownFileTypes = true, // Allow serving files with unknown types
+    DefaultContentType = "application/octet-stream" // Default content type for unknown files
+});
 
 app.UseAuthorization();
 

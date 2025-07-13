@@ -39,7 +39,12 @@ namespace Reelkix.BackOffice.Application.ProductImages.Commands.UploadProductIma
             var publicUrl = _s3Service.GetPublicUrl(s3Key);
             
             // Create a new ProductImage entity
-            var productImage = new ProductImage(productId: command.ProductId, url: publicUrl, altText: command.AltText, sortOrder: command.SortOrder);
+            var productImage = new ProductImage(
+                id: productImageId,
+                productId: command.ProductId, 
+                url: publicUrl, 
+                altText: command.AltText, 
+                sortOrder: command.SortOrder);
 
             // Save the image metadata to the database
             _db.ProductImages.Add(productImage);

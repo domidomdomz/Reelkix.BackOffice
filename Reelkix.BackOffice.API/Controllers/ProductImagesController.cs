@@ -16,7 +16,7 @@ namespace Reelkix.BackOffice.API.Controllers
         [HttpPost]
         // Single or batched full image uploads
         public async Task<IActionResult> UploadImage(
-            Guid productId, 
+            [FromRoute] Guid productId, 
             [FromForm] int sortOrder, 
             [FromForm] IFormFile file, 
             CancellationToken cancellationToken)
@@ -43,27 +43,27 @@ namespace Reelkix.BackOffice.API.Controllers
             return Created(string.Empty, new { imageId });
         }
 
-        [HttpPost]
-        // For chunked uploads
-        public async Task<IActionResult> UploadChunkedImage([FromForm] UploadChunkCommand command, CancellationToken cancellationToken)
-        {
-            // Here you would typically handle the chunked upload logic, such as saving the chunk to a temporary location
-            return Ok();
-        }
+        //[HttpPost]
+        //// For chunked uploads
+        //public async Task<IActionResult> UploadChunkedImage([FromForm] UploadChunkCommand command, CancellationToken cancellationToken)
+        //{
+        //    // Here you would typically handle the chunked upload logic, such as saving the chunk to a temporary location
+        //    return Ok();
+        //}
 
-        [HttpGet]
-        public async Task<IActionResult> GetImages(Guid productId, CancellationToken cancellation)
-        {
-            if (productId == Guid.Empty)
-                return BadRequest("Invalid product ID.");
-            // Here you would typically retrieve the images from a storage service or database
-            // For demonstration, we will return a placeholder response
-            var images = new List<string>
-            {
-                "https://example.com/image1.jpg",
-                "https://example.com/image2.jpg"
-            };
-            return Ok(images);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetImages(Guid productId, CancellationToken cancellation)
+        //{
+        //    if (productId == Guid.Empty)
+        //        return BadRequest("Invalid product ID.");
+        //    // Here you would typically retrieve the images from a storage service or database
+        //    // For demonstration, we will return a placeholder response
+        //    var images = new List<string>
+        //    {
+        //        "https://example.com/image1.jpg",
+        //        "https://example.com/image2.jpg"
+        //    };
+        //    return Ok(images);
+        //}
     }
 }
