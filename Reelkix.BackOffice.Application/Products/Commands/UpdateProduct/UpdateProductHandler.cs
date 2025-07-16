@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Reelkix.BackOffice.Persistence.Data;
 
 namespace Reelkix.BackOffice.Application.Products.Commands.UpdateProduct
@@ -23,7 +24,7 @@ namespace Reelkix.BackOffice.Application.Products.Commands.UpdateProduct
 
             if (product == null)
             {
-                throw new KeyNotFoundException($"Product with ID {command.ProductId} not found.");
+                throw new ValidationException($"Product with ID {command.ProductId} not found.");
             }
 
             product.UpdateDetails(

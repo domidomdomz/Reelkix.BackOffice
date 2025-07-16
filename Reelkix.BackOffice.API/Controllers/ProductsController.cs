@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
+using Reelkix.BackOffice.Application.Products.Commands.DeleteDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.UpdateProduct;
 using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
@@ -16,20 +17,22 @@ namespace Reelkix.BackOffice.API.Controllers
         private readonly UpdateProductHandler _updateHandler;
         private readonly GetProductByIdHandler _getHandler;
         private readonly GetAllProductsHandler _getAllHandler;
-
+        private readonly DeleteDraftProductHandler _deleteDraftProductHandler;
 
         public ProductsController(
             CreateProductHandler createHandler,
             CreateDraftProductHandler createDraftHandler,
             UpdateProductHandler updateHandler,
             GetProductByIdHandler getHandler, 
-            GetAllProductsHandler getAllHandler)
+            GetAllProductsHandler getAllHandler,
+            DeleteDraftProductHandler deleteDraftProductHandler)
         {
             _createHandler = createHandler ?? throw new ArgumentNullException(nameof(createHandler));
             _createDraftHandler = createDraftHandler ?? throw new ArgumentNullException(nameof(createDraftHandler));
             _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
             _getHandler = getHandler ?? throw new ArgumentNullException(nameof(getHandler));
             _getAllHandler = getAllHandler ?? throw new ArgumentNullException(nameof(getAllHandler));
+            _deleteDraftProductHandler = deleteDraftProductHandler ?? throw new ArgumentNullException(nameof(deleteDraftProductHandler));
         }
 
         [HttpPost("draft")]
@@ -37,6 +40,13 @@ namespace Reelkix.BackOffice.API.Controllers
         {
             var draftId = await _createDraftHandler.Handle(command, cancellationToken);
             return Ok(new { productId = draftId });
+        }
+
+        [HttpDelete("draft/{id}")]
+        public async Task<IActionResult> DeleteDraftProduct(Guid id, CancellationToken cancellationToken)
+        {
+            await _deleteDraftProductHandler.Handle(id, cancellationToken);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
