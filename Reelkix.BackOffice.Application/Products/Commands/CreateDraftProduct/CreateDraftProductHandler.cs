@@ -35,10 +35,10 @@ namespace Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct
             var draft = new Domain.Products.Product(
                 id: Guid.NewGuid(),
                 name: command.Name,
-                description: string.Empty, // Default to empty description for draft
+                description: command.Description,
                 manufacturerId: command.ManufacturerId,
-                costPrice: 0, // Default to 0 for draft
-                sellingPrice: 0 // Default to 0 for draft
+                costPrice: command.CostPrice,
+                sellingPrice: command.SellingPrice
             );
             _db.Products.Add(draft);
             await _db.SaveChangesAsync(cancellationToken);
