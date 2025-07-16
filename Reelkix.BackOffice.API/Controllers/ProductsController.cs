@@ -4,6 +4,7 @@ using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.DeleteDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.UpdateProduct;
 using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
+using Reelkix.BackOffice.Application.Products.Queries.GetDraftProductById;
 using Reelkix.BackOffice.Application.Products.Queries.GetProductById;
 
 namespace Reelkix.BackOffice.API.Controllers
@@ -16,6 +17,7 @@ namespace Reelkix.BackOffice.API.Controllers
         private readonly CreateDraftProductHandler _createDraftHandler;
         private readonly UpdateProductHandler _updateHandler;
         private readonly GetProductByIdHandler _getHandler;
+        private readonly GetDraftProductByIdHandler _getDraftHandler;
         private readonly GetAllProductsHandler _getAllHandler;
         private readonly DeleteDraftProductHandler _deleteDraftProductHandler;
 
@@ -23,7 +25,8 @@ namespace Reelkix.BackOffice.API.Controllers
             CreateProductHandler createHandler,
             CreateDraftProductHandler createDraftHandler,
             UpdateProductHandler updateHandler,
-            GetProductByIdHandler getHandler, 
+            GetProductByIdHandler getHandler,
+            GetDraftProductByIdHandler getDraftHandler,
             GetAllProductsHandler getAllHandler,
             DeleteDraftProductHandler deleteDraftProductHandler)
         {
@@ -31,8 +34,17 @@ namespace Reelkix.BackOffice.API.Controllers
             _createDraftHandler = createDraftHandler ?? throw new ArgumentNullException(nameof(createDraftHandler));
             _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
             _getHandler = getHandler ?? throw new ArgumentNullException(nameof(getHandler));
+            _getDraftHandler = getDraftHandler ?? throw new ArgumentNullException(nameof(getDraftHandler));
             _getAllHandler = getAllHandler ?? throw new ArgumentNullException(nameof(getAllHandler));
             _deleteDraftProductHandler = deleteDraftProductHandler ?? throw new ArgumentNullException(nameof(deleteDraftProductHandler));
+        }
+
+        [HttpGet("draft/{id}")]
+        public async Task<IActionResult> GetDraftProductById(Guid id, CancellationToken cancellationToken)
+        {
+            var product = await _getDraftHandler.Handle(new GetDraftProductByIdQuery(id), cancellationToken);
+            if (product == null) return NotFound($"Draft product with ID {id} not found.");
+            return Ok(product);
         }
 
         [HttpPost("draft")]
