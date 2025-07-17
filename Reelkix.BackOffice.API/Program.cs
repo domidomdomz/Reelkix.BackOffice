@@ -7,6 +7,7 @@ using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer;
 using Reelkix.BackOffice.Application.Manufacturers.Commands.UpdateManufacturer.Validators;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetAllManufacturers;
 using Reelkix.BackOffice.Application.Manufacturers.Queries.GetManufacturerById;
+using Reelkix.BackOffice.Application.ProductImages.Commands.DeleteProductImage;
 using Reelkix.BackOffice.Application.ProductImages.Commands.UploadProductImage;
 using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct.Validators;
@@ -43,6 +44,7 @@ builder.Services.AddScoped<CreateDraftProductCommandValidator>();
 builder.Services.AddScoped<DeleteDraftProductHandler>();
 
 builder.Services.AddScoped<UploadProductImageHandler>();
+builder.Services.AddScoped<DeleteProductImageHandler>();
 
 builder.Services.AddScoped<CreateManufacturerHandler>();
 builder.Services.AddScoped<CreateManufacturerCommandValidator>();

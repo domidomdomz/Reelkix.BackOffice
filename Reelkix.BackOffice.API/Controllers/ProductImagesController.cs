@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Reelkix.BackOffice.Application.ProductImages.Commands.DeleteProductImage;
 using Reelkix.BackOffice.Application.ProductImages.Commands.UploadProductImage;
+using Reelkix.BackOffice.Application.Products.Commands.DeleteDraftProduct;
+using Reelkix.BackOffice.Application.Products.Queries.GetDraftProductById;
 
 namespace Reelkix.BackOffice.API.Controllers
 {
@@ -8,9 +11,12 @@ namespace Reelkix.BackOffice.API.Controllers
     public class ProductImagesController : ControllerBase
     {
         private readonly UploadProductImageHandler _uploadProductImageHandler;
-        public ProductImagesController(UploadProductImageHandler uploadProductImageHandler)
+        private readonly DeleteProductImageHandler _deleteProductImageHandler;
+
+        public ProductImagesController(UploadProductImageHandler uploadProductImageHandler, DeleteProductImageHandler deleteProductImageHandler)
         {
             _uploadProductImageHandler = uploadProductImageHandler;
+            _deleteProductImageHandler = deleteProductImageHandler;
         }
 
         [HttpPost]
@@ -41,6 +47,13 @@ namespace Reelkix.BackOffice.API.Controllers
                 return BadRequest("Failed to upload image.");
 
             return Created(string.Empty, new { imageId });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDraftProduct([FromRoute] Guid productId, [FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            await _deleteProductImageHandler.Handle(new DeleteProductImageCommand { ProductId = productId, ProductImageId = id }, cancellationToken);
+            return NoContent();
         }
 
         //[HttpPost]
