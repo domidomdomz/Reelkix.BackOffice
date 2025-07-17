@@ -13,6 +13,7 @@ using Reelkix.BackOffice.Application.Products.Commands.CreateDraftProduct.Valida
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct;
 using Reelkix.BackOffice.Application.Products.Commands.CreateProduct.Validators;
 using Reelkix.BackOffice.Application.Products.Commands.DeleteDraftProduct;
+using Reelkix.BackOffice.Application.Products.Commands.UpdateDraftProduct;
 using Reelkix.BackOffice.Application.Products.Commands.UpdateProduct;
 using Reelkix.BackOffice.Application.Products.Queries.GetAllProducts;
 using Reelkix.BackOffice.Application.Products.Queries.GetDraftProductById;
@@ -32,6 +33,7 @@ if (!useInMemory)
 
 builder.Services.AddScoped<CreateProductHandler>();
 builder.Services.AddScoped<CreateDraftProductHandler>();
+builder.Services.AddScoped<UpdateDraftProductHandler>();
 builder.Services.AddScoped<UpdateProductHandler>();
 builder.Services.AddScoped<GetProductByIdHandler>();
 builder.Services.AddScoped<GetDraftProductByIdHandler>();

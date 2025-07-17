@@ -37,17 +37,30 @@ namespace Reelkix.BackOffice.Application.Products.Commands.UpdateProduct
 
             product.MarkFinalized();
 
-            // Update image metadata
-            foreach (var image in product.Images)
+            //// Update image metadata
+            //foreach (var image in product.Images)
+            //{
+            //    var update = command.Images.FirstOrDefault(i => i.ImageId == image.Id);
+            //    if (update != null)
+            //    {
+            //        image.UpdateSortOrder(update.SortOrder);
+            //        image.UpdateAltText(update.AltText);
+            //    }
+            //}
+
+            foreach (var commandImage in command.Images)
             {
-                var update = command.Images.FirstOrDefault(i => i.ImageId == image.Id);
-                if (update != null)
+                var existingImage = _db.ProductImages.FirstOrDefault(i => i.Id == commandImage.ImageId);
+                if (existingImage != null)
                 {
-                    image.UpdateSortOrder(update.SortOrder);
-                    image.UpdateAltText(update.AltText);
+                    existingImage.UpdateSortOrder(commandImage.SortOrder);
+                    existingImage.UpdateAltText(commandImage.AltText);
+
+                    _db.ProductImages.Update(existingImage);
                 }
             }
 
+            _db.Products.Update(product);
             await _db.SaveChangesAsync(cancellationToken);
         }
     }

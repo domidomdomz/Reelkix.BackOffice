@@ -24,6 +24,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetAllProducts
             var products = await _db.Products
                 .Include(p => p.Images)
                 .Include(p => p.Manufacturer)
+                .Where(p => !p.IsDraft) // Assuming you want to exclude draft products
                 .OrderByDescending(p => p.CreatedAt) // Assuming you want to order by creation date descending
                 .Select(p => new ProductDto
                 {

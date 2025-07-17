@@ -33,7 +33,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetProductById
                 ManufacturerName = product.Manufacturer?.Name ?? string.Empty, // Assuming Manufacturer is included in the query
                 CostPrice = product.CostPrice,
                 SellingPrice = product.SellingPrice,
-                ImageUrls = product.Images.Select(pi => pi.Url).ToList()
+                ImageUrls = product.Images.OrderBy(i => i.SortOrder).Select(pi => pi.Url).ToList()
             };
         }
     }
