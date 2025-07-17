@@ -1,5 +1,5 @@
-﻿using Amazon.S3;
-using Microsoft.Extensions.Configuration;
+﻿using Amazon.Runtime;
+using Amazon.S3;
 using Microsoft.Extensions.Options;
 using Reelkix.BackOffice.Application.Common.Interfaces.Storage;
 
@@ -10,10 +10,23 @@ namespace Reelkix.BackOffice.Infrastructure.Storage
         private readonly IAmazonS3 _s3;
         private readonly StorageOptions _options;
 
-        public S3Service(IAmazonS3 s3, IOptions<StorageOptions> options)
+        public S3Service(IOptions<StorageOptions> options)
         {
-            _s3 = s3;
             _options = options.Value;
+
+            // Retrieve environment variables or throw an exception if not set
+            var awsAccessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+            var awsSecretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+            if (string.IsNullOrEmpty(awsAccessKeyId) || string.IsNullOrEmpty(awsSecretAccessKey))
+            {
+                throw new Exception("AWS credentials are not set in the environment variables.");
+            }
+
+            // Create the S3 client with explicit credentials and region
+            var credentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey);
+            var region = _options.Region ?? "ap-southeast-1";
+            var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
+            _s3 = new AmazonS3Client(credentials, regionEndpoint);
         }
 
         public async Task UploadFileAsync(Stream stream, string key, string contentType)
@@ -23,8 +36,7 @@ namespace Reelkix.BackOffice.Infrastructure.Storage
                 BucketName = _options.BucketName,
                 Key = key,
                 InputStream = stream,
-                ContentType = contentType,
-                CannedACL = Amazon.S3.S3CannedACL.PublicRead // Make the file publicly readable
+                ContentType = contentType
             };
             await _s3.PutObjectAsync(request);
         }

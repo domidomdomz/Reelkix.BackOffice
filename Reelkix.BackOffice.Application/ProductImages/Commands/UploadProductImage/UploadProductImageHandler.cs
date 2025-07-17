@@ -29,7 +29,11 @@ namespace Reelkix.BackOffice.Application.ProductImages.Commands.UploadProductIma
 
             var productImageId = Guid.NewGuid();
             var extension = Path.GetExtension(command.FileName);
-            var fileName = $"{productImageId}{extension}";
+            var timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
+            var baseName = Path.GetFileNameWithoutExtension(command.FileName);
+            var slug = baseName.ToLowerInvariant().Replace(" ", "-").Replace("_", "-");
+
+            var fileName = $"{timestamp}-{slug}-{productImageId}{extension}";
             var s3Key = $"products/{command.ProductId}/{fileName}";
 
             // Upload the file to S3

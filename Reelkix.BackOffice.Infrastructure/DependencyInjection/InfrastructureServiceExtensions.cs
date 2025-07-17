@@ -21,13 +21,12 @@ namespace Reelkix.BackOffice.Infrastructure.DependencyInjection
             services.Configure<StorageOptions>(config.GetSection("Storage"));
 
             // S3 or Local stub
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() && config.GetValue<bool>("Storage:UseLocalStorage"))
             {
                 services.AddSingleton<IS3Service, LocalImageService>();
             }
             else
             {
-                services.AddAWSService<IAmazonS3>();
                 services.AddSingleton<IS3Service, S3Service>();
             }
 
