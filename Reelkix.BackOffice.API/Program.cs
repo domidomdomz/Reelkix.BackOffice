@@ -60,7 +60,8 @@ builder.Services.AddControllers(); // Endpoint routing is enabled by default in 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-var corsOriginRaw = builder.Configuration["CorsOrigins"];
+var corsOriginRaw = Environment.GetEnvironmentVariable("CORS_ORIGINS") 
+    ?? builder.Configuration["CorsOrigins"];
 var corsOrigin = corsOriginRaw?.Split(";") ?? Array.Empty<string>();
 
 builder.Services.AddCors(options =>
