@@ -61,12 +61,13 @@ builder.Services.AddControllers(); // Endpoint routing is enabled by default in 
 builder.Services.AddOpenApi();
 
 
+var corsOrigin = builder.Configuration.GetSection("CorsOrigins").Get<string[]>() ?? [];
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalFrontend", builder =>
     {
         builder
-            .WithOrigins("http://localhost:5173") // Vite default - TODO: Store to appsettings for Production when deployed
+            .WithOrigins(corsOrigin)
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials(); // if you use cookies or auth headers
