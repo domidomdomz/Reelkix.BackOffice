@@ -378,3 +378,8 @@ FodyWeavers.xsd
 /Reelkix.BackOffice.Persistence/Migrations/20250709145900_Add-Manufacturer-to-Product5.Designer.cs
 /Reelkix.BackOffice.API/UploadedFiles/products
 /.env
+/Reelkix.BackOffice.API/init.sql
+/Reelkix.BackOffice.API/Properties/ServiceDependencies/reelkix-backoffice-web-api - Web Deploy/profile.arm.json
+/Reelkix.BackOffice.Persistence/Migrations
+/Reelkix.BackOffice.Persistence/Migrations/20250724105849_InitialCreate.cs
+/Reelkix.BackOffice.Persistence/Migrations/20250724105849_InitialCreate.Designer.cs
