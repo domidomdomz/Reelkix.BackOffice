@@ -91,14 +91,17 @@ try
 
     app.UseHttpsRedirection();
 
-    app.UseStaticFiles(new StaticFileOptions
+    if (app.Environment.IsDevelopment())
     {
-        FileProvider = new PhysicalFileProvider(
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(
             Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles")),
-        RequestPath = "/static",
-        ServeUnknownFileTypes = true, // Allow serving files with unknown types
-        DefaultContentType = "application/octet-stream" // Default content type for unknown files
-    });
+            RequestPath = "/static",
+            ServeUnknownFileTypes = true, // Allow serving files with unknown types
+            DefaultContentType = "application/octet-stream" // Default content type for unknown files
+        });
+    }
 
     app.UseAuthorization();
 
