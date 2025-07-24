@@ -74,35 +74,44 @@ builder.Services.AddCors(options =>
     });
 });
 
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+try
 {
-    app.MapOpenApi();
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.MapOpenApi();
+    }
+    app.MapScalarApiReference();
+
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+    app.UseCors("AllowLocalFrontend");
+
+    app.UseHttpsRedirection();
+
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles")),
+        RequestPath = "/static",
+        ServeUnknownFileTypes = true, // Allow serving files with unknown types
+        DefaultContentType = "application/octet-stream" // Default content type for unknown files
+    });
+
+    app.UseAuthorization();
+
+    app.MapControllers(); // This maps the controller actions to endpoints
+
+    app.Run();
 }
-app.MapScalarApiReference();
-
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-
-app.UseCors("AllowLocalFrontend");
-
-app.UseHttpsRedirection();
-
-app.UseStaticFiles(new StaticFileOptions
+catch (Exception ex)
 {
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles")),
-    RequestPath = "/static",
-    ServeUnknownFileTypes = true, // Allow serving files with unknown types
-    DefaultContentType = "application/octet-stream" // Default content type for unknown files
-});
+    // Log critical startup failure
+    Console.WriteLine("Startup failed: " + ex.Message);
+    throw;
+}
 
-app.UseAuthorization();
-
-app.MapControllers(); // This maps the controller actions to endpoints
-
-app.Run();
 
 public partial class Program { }
