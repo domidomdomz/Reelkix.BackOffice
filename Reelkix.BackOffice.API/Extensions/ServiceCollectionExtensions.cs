@@ -8,8 +8,11 @@ namespace Reelkix.BackOffice.API.Extensions
         public static IServiceCollection AddSqlServerDbContext(this IServiceCollection services, IConfiguration configuration)
         {
 
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+                                    ?? configuration.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
 
             return services;
         }
