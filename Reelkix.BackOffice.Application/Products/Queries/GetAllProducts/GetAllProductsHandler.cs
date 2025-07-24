@@ -38,7 +38,7 @@ namespace Reelkix.BackOffice.Application.Products.Queries.GetAllProducts
                     ImageUrls = p.Images.OrderBy(pi => pi.SortOrder).Select(pi => pi.Url).ToList(),
                 }).ToListAsync();
 
-            if (products is null || !products.Any())
+            if (products is null)
             {
                 return null; // or throw an exception if you prefer
             }

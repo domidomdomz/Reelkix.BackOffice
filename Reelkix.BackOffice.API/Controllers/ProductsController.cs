@@ -107,8 +107,10 @@ namespace Reelkix.BackOffice.API.Controllers
         public IActionResult GetAllProducts(CancellationToken cancellation)
         {
             var products = _getAllHandler.Handle(cancellation).Result;
-            if (products == null || !products.Any())
+            if (products == null)
                 return NotFound("No products found.");
+            if (!products.Any())
+                return NoContent();
             return Ok(products);
         }
     }
